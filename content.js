@@ -44,7 +44,7 @@ async function saveLeetcodeEntry(problemName) {
     await chrome.storage.local.set({
       [STORAGE_KEY]: state
     });
-
+    console.log("data which will store",state);
     console.log(
       "Saved LeetCode activity:",
       problemName
@@ -151,7 +151,7 @@ window.fetch = async function (...args) {
       typeof args[0] === "string"
         ? args[0]
         : args[0]?.url || "";
-
+    console.log("Fetch URL:", url);
     if (
       url.includes("submit") ||
       url.includes("check")
