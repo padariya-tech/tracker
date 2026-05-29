@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
+
+<title>Dev Activity Tracker</title>
+
+<style>
+  body {
+    width: 420px;
+    background: #0f0f0f;
+    color: white;
+    font-family: Arial;
+    padding: 16px;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  .tab {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #222;
+    color: white;
+  }
+
+  .active {
+    background: #1D9E75;
+  }
+
+  .section {
+    display: none;
+  }
+
+  .section.active {
+    display: block;
+  }
+
+  .card {
+    background: #1a1a1a;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    background: #222;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 8px;
+  }
+
+  .add-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #1D9E75;
+    color: white;
+  }
+
+  .entry {
+    border-bottom: 1px solid #333;
+    padding: 8px 0;
+  }
+
+  .entry-auto {
+    color: #1D9E75;
+    font-size: 12px;
+  }
+</style>
+
+</head>
+
+<body>
+
+<h2>Dev Tracker</h2>
+
+<div class="tabs">
+
+  <button
+    id="log-tab-btn"
+    class="tab active"
+  >
+    Log
+  </button>
+
+  <button
+    id="dash-tab-btn"
+    class="tab"
+  >
+    Dashboard
+  </button>
+
+</div>
+
+<!-- LOG -->
+
+<div
+  id="tab-log"
+  class="section active"
+>
+
+  <select id="sel-plat">
+    <option>LeetCode</option>
+    <option>GeeksForGeeks</option>
+    <option>YouTube</option>
+    <option>GitHub</option>
+  </select>
+
+  <input
+    type="text"
+    id="inp-desc"
+    placeholder="Description"
+  />
+
+  <input
+    type="number"
+    id="inp-dur"
+    placeholder="Minutes"
+  />
+
+  <button
+    class="add-btn"
+    id="add-btn"
+  >
+    + Add Activity
+  </button>
+
+  <div
+    id="entries-list"
+    style="margin-top:20px"
+  ></div>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div
+  id="tab-dashboard"
+  class="section"
+>
+
+  <div id="stats"></div>
+
+</div>
+
+<script src="popup.js"></script>
+
+</body>
+</html>
