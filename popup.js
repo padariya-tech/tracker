@@ -127,6 +127,9 @@ async function addEntry() {
 
   await save(s);
 
+  const created = s.entries[s.entries.length - 1];
+  syncActivityToServer(created);
+
   document.getElementById("inp-desc").value = "";
 
   document.getElementById("inp-dur").value = "";

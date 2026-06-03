@@ -1,22 +1,43 @@
-
 {
   "manifest_version": 3,
-
   "name": "Dev Activity Tracker",
-
   "version": "1.0",
 
   "permissions": [
     "storage"
   ],
 
+  "background": {
+    "service_worker": "background.js"
+  },
+
   "host_permissions": [
-    "https://leetcode.com/*"
+    "https://leetcode.com/*",
+    "https://practice.geeksforgeeks.org/*",
+    "https://www.geeksforgeeks.org/*",
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8000/*"
   ],
 
-  "action": {
-    "default_popup": "popup.html"
-  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "inject.js"
+      ],
+      "matches": [
+        "https://leetcode.com/*"
+      ]
+    },
+    {
+      "resources": [
+        "gfg-inject.js"
+      ],
+      "matches": [
+        "https://practice.geeksforgeeks.org/*",
+        "https://www.geeksforgeeks.org/*"
+      ]
+    }
+  ],
 
   "content_scripts": [
     {
@@ -24,10 +45,21 @@
         "https://leetcode.com/*"
       ],
       "js": [
-        "content.js"
+        "sync-api.js",
+        "leetcode-content.js"
       ],
-      "run_at": "document_idle"
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://practice.geeksforgeeks.org/*",
+        "https://www.geeksforgeeks.org/problems/*"
+      ],
+      "js": [
+        "sync-api.js",
+        "gfg-content.js"
+      ],
+      "run_at": "document_start"
     }
   ]
 }
-

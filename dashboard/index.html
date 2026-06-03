@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dev Activity Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">◆</span>
+        <div>
+          <h1>Dev Tracker</h1>
+          <p>Activity dashboard</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <button type="button" class="nav-item active" data-view="overview">Overview</button>
+        <button type="button" class="nav-item" data-view="feed">Activity feed</button>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-head">
+          <h2 id="page-title">Overview</h2>
+          <p id="page-subtitle" class="muted">Your coding activity at a glance</p>
+        </div>
+        <div class="topbar-actions">
+          <div class="date-selector" id="date-selector">
+            <input type="hidden" id="date-picker" />
+            <button
+              type="button"
+              id="date-trigger"
+              class="date-trigger"
+              aria-haspopup="dialog"
+              aria-expanded="false"
+              aria-controls="calendar-popover"
+            >
+              <span class="date-trigger-label">Viewing</span>
+              <span id="date-display" class="date-trigger-value">—</span>
+              <span class="date-trigger-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div
+              id="calendar-popover"
+              class="calendar-popover hidden"
+              role="dialog"
+              aria-label="Choose a date"
+            >
+              <div class="cal-header">
+                <button type="button" class="cal-nav" id="cal-prev" aria-label="Previous month">‹</button>
+                <span id="cal-title" class="cal-title">—</span>
+                <button type="button" class="cal-nav" id="cal-next" aria-label="Next month">›</button>
+              </div>
+              <div class="cal-weekdays" aria-hidden="true">
+                <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+              </div>
+              <div id="cal-grid" class="cal-grid"></div>
+            </div>
+          </div>
+          <select id="platform-filter" class="select" aria-label="Filter by platform">
+            <option value="">All platforms</option>
+            <option>LeetCode</option>
+            <option>GeeksForGeeks</option>
+            <option>YouTube</option>
+            <option>GitHub</option>
+          </select>
+          <button type="button" id="refresh-btn" class="btn btn-ghost">Refresh</button>
+        </div>
+      </header>
+
+      <div id="error-banner" class="error-banner hidden" role="alert"></div>
+      <div id="info-banner" class="info-banner hidden" role="status"></div>
+
+      <section id="view-overview" class="view active">
+        <div class="stats-grid" id="stats-grid">
+          <article class="stat-card">
+            <span class="stat-label">Total activities</span>
+            <span class="stat-value" id="stat-total">—</span>
+          </article>
+          <article class="stat-card accent">
+            <span class="stat-label">Auto detected</span>
+            <span class="stat-value" id="stat-auto">—</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Manual entries</span>
+            <span class="stat-value" id="stat-manual">—</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">Minutes logged</span>
+            <span class="stat-value" id="stat-minutes">—</span>
+          </article>
+        </div>
+
+        <div class="panels">
+          <section class="panel">
+            <h3>By platform</h3>
+            <div id="platform-chart" class="platform-chart">
+              <p class="empty muted">No data yet</p>
+            </div>
+          </section>
+          <section class="panel">
+            <h3>Recent</h3>
+            <div class="recent-table-wrap">
+              <table class="recent-table" id="recent-table">
+                <colgroup>
+                  <col class="col-platform" />
+                  <col class="col-problem" />
+                  <col class="col-time" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>Platform</th>
+                    <th>Problem</th>
+                    <th>Time</th>
+                  </tr>
+                </thead>
+                <tbody id="recent-tbody">
+                  <tr>
+                    <td colspan="3" class="empty muted">No activities</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section id="view-feed" class="view">
+        <ul id="feed-list" class="activity-list">
+          <li class="empty muted">Loading…</li>
+        </ul>
+      </section>
+    </main>
+  </div>
+  <script src="calendar.js?v=5"></script>
+  <script src="app.js?v=5"></script>
+</body>
+</html>
